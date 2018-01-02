@@ -1,0 +1,35 @@
+{% extends 'form/basemain.html' %}
+{% load staticfiles %}
+{% block title %}New User Registration{% endblock %}
+{% block body %}
+    <style>
+    form{
+        background-color: transparent;
+        opacity:0.89;
+    }
+    button{
+        background-color: gold;
+    }
+    </style>
+  <form class="modal-content animate" style="padding: 12px 12px " method="POST">{% csrf_token %}
+      <span  class="close" onClick="window.location.href='{% url 'form:index' %}'" title="Close Modal">&times;</span>
+      <h2 style="text-align: center">Registration Form</h2>
+      <div style="width: 100%;">
+          <img src="{% static 'form/images/oscar_boy-512.png' %}" width="100px" height="100px" style="margin-left:150px;">
+      </div><br>
+      {% for field in form %}
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
+      {% endfor %}
+
+
+      <input type="checkbox" checked="checked"> Remember me<br>
+      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      <button type="submit" class="signupbtn">Sign Up</button>
+  </form>
+{% endblock %}

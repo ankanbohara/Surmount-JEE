@@ -1,0 +1,259 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SurmountJEE{% endblock %}</title>
+    {% load staticfiles %}
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-dropdownhover.css">
+    <link rel="stylesheet" href="{% static 'form/sidenav.css' %}">
+    <script src="js/bootstrap-dropdownhover.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+</head>
+<style>
+body {
+
+
+    background:linear-gradient(#00BFFF,whitesmoke);
+    background-repeat: no-repeat;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+input[type=text], input[type=password] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 4px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    align:center;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: gray;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+    width:80%;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: deeppink; /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+
+    width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.nav.navbar-nav.navbar-right li a {
+    color:black;
+    font-weight: 600;
+    font-size: 15px;
+    font-family:"Cambria";
+    font-weight:normal;
+    border-radius: 24px;
+
+}
+.nav.navbar-nav.navbar-right li:hover{
+    border-radius: 24px;
+    background-color: whitesmoke;
+}
+.nav.navbar-nav.navbar-left li a{
+    color: red;
+    font-weight: 900;
+    font-size: 15px;
+}
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 80%;
+    }
+}
+    .navbar-default{
+        background-color: black;
+        border:0 solid black;
+
+        margin-top:4px;
+    }
+    .navbar-brand{
+        font-family: "Freestyle Script";
+        font-size: 40px;
+    }
+    }
+
+</style>
+</head>
+<nav>
+  <div class="container-fluid">
+    <!--div class="navbar-header"-->
+      <img style="width: 10%;height:15%;margin-top: 0;" src="{% static 'form/images/website logo.png' %}" href="{% url 'form:index' %}">
+    <!--/div-->
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/form/search/" style="font-size: 30px;"> Search Blogs</a></li>
+        <li ><a href="{% url 'form:index' %}" style="font-size: 30px;">Home</a></li>
+        <li><a href="{% url 'form:aboutus' %}" style="font-size: 30px;"> About Us </a></li>
+      <li><a href="{% url 'form:viewblogs' %}" style="font-size: 30px;">Blogs</a></li>
+
+        {% if user.is_authenticated %}
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 30px;">  Quiz <span class="caret"></span></a>
+
+        <ul class="dropdown-menu" style="color:gray;">
+          <li><a href="{% url 'form:quizsingle' %}" style="color:gray;" >Single-option</a></li>
+          <li><a href="{% url 'form:quizmorethanone'%}" style="color:gray;">Multiple-option</a></li>
+        </ul>
+      </li>
+    {% endif %}
+<!--li><a href="feedbackform.html"><span class="glyphicon glyphicon-bell"></span>  FEEDBACK  </a></li>
+        <li><a href="contact.html"><span class="glyphicon glyphicon-edit"></span> ENQUIRY </a></li>
+        <li><a href="blogform.html"><span class="glyphicon glyphicon-blackboard"></span> BLOGS </a></li-->
+        {% if user.is_authenticated %}
+            {% else %}
+            <li class="log1" style="background-color:WHITE;border:none;color:black;padding:text-align:center;text-decoration: none;border-radius: 24px;display: inline-block;font-size: 12px;margin:4px 2px;"><a href="{% url 'form:registration'%}" style="font-size: 20px;"> Sign Up </a></li>
+           <li style="background-color:WHITE;border:none;color:black;padding:text-align:center;text-decoration: none;border-radius: 24px;display: inline-block;font-size: 16px;margin:4px 2px;" ><a href="{% url 'form:loginview' %}" style="font-size: 20px;"> Login </a></li>
+    {% endif %}
+ <style>
+        .log1:hover{
+            border-radius:24px;
+            color:black;
+        opacity:0.5} </style>
+    </ul>
+  </div>
+</nav>
+
+{% if user.is_authenticated %}
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <strong style="color: white;font-size: large;margin-left:15px;"><span class="glyphicon glyphicon-user"></span>Welcome {{ user.username }}</strong>
+    <a href="{% url 'form:feedback' %}"> Feedback </a>
+  <a href="{% url 'form:blog' %}">  Create Blog </a>
+  <a href="{% url 'form:syllabus' %}"> Syllabus</a>
+    <a href="{% url 'form:contact' %}"> Contact Us</a>
+    <a href="{% url 'form:feed' %}"><span class="glyphicon glyphicon-comment"></span>Feed</a>
+    <a href="{% url 'form:notification' %}"><span class="glyphicon glyphicon-bell"></span> Notifications </a>
+    <a href="{% url 'form:performance' %}"><span class="glyphicon glyphicon-flag"></span>Performance</a>
+    <a href="{% url 'form:log_out' %}"><span class="glyphicon glyphicon-off"></span>Logout</a>
+
+</div>
+
+<div id="main" style="margin-top: -20px;">
+
+  <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+}
+</script>
+{% endif %}
+<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,te', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div class="setimage"></div>
+
+{% block body %}
+{% endblock %}
+</html>

@@ -1,0 +1,10 @@
+{% extends 'form/basemain.html' %}
+{% block title %}Score Page{% endblock %}
+{% block body %}
+    {% load staticfiles %}
+<h1 style="color: red;text-align: center;font-size: 60px;">Result</h1><br>
+    <h2 style="color:black; font-family:arial;font-size: 40px;"> Hello {{ user.username }}, Your score is :</h2> <br><br><h1 style="color:green; text-align:center"> {{score}} Points</h1>
+<div style="font-size:40px;border:1px solid black;font-family:arial;"> <a href="{% url 'form:certificate_page' %}"> Click for Certificate  </a>
+<br><hr><a href="{% url 'form:answerpage' %}"> Answer page </a><br><hr><a href="{% url 'form:performance' %}">Performance in last quizzes</a> </div>
+
+{% endblock %}

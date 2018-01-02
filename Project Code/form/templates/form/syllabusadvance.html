@@ -1,0 +1,13 @@
+{% extends 'form/basemain.html' %}
+{% load staticfiles %}
+{% block title %}JEE ADVANCED Syllabus{% endblock %}
+{% block body %}
+<link href = "syllabusadvance.css" rel= "stylesheet" type = "text/css">
+</head>
+<body>
+<div class ="top">
+<img src={% static 'form/images/iit.jpg' %} id="advance" style=" height:220px;width:60%;margin-left:250px;"></div>
+<h1><span style="color: red">Syllabus</span> for<span style="color:yellow;"> JEE ADVANCE</span> 2018</h1>
+<h1>click here to download</h1><span><h1><a href="{% static 'form/images/syllabi.pdf' %}" download="syllabus.pdf"> syllabus.pdf</a></h1></span>
+{% endblock %}
+

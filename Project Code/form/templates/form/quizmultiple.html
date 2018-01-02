@@ -1,0 +1,60 @@
+{% extends 'form/basemain.html' %}
+{% block title %}More Than One Correct Type{% endblock %}
+{% block body %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'form/style.css' %}" />
+<p style="font-size: 35px;margin-top:-55px;color:black;margin-left: 900px;">Time remaining:</p><span id="timer" style="float:right;font-size: 40px;margin-top:-50px;color:red"></span>
+  <script>
+document.getElementById('timer').innerHTML =
+  05 + ":" + 20;
+startTimer();
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  if(m<0)
+    document.getElementsByTagName('button')[0].click();
+
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
+
+
+        </script>
+{% if all_question %}
+	<form method="POST" action="{% url 'form:quizmorethanone'%}">
+    {% csrf_token %}
+    <script>var i=0;</script>
+    {% for quizes in all_question %}
+        <div style="padding:20px 20px;border:1px solid brown;">
+    <h1 style="font-size:30px;text-align: center;color:black;"><span style="color: #0f0f0f"></span><span style="color: purple"><script>document.write(++i)</script>.Question : {{quizes.question}} ?</span></h1><br>
+       <div style="font-size: 25px; color:black;">
+        <ol>
+            <li>{{ quizes.choice1 }}</li>
+            <li>{{ quizes.choice2 }}</li>
+            <li>{{ quizes.choice3 }}</li>
+            <li>{{ quizes.choice4 }}</li>
+        </ol>
+        <label><b> Select Choices</b></label>
+      <input  type="text" placeholder="Enter choices in a comma separated format" name="{{ quizes.id }}" required>
+       </div>
+        </div>
+           <hr>
+    {% endfor %}
+    <br>
+    <button type="submit" id="submit" value="Submit"  style="height:50px;width:100px;color:white;background:green;margin-left:650px;">Submit</button>
+</form>
+{% else %}
+	<h2> You do not have any questions</h2>
+{% endif %}
+{% endblock %}

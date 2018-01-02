@@ -1,0 +1,17 @@
+{% extends 'form/basemain.html' %}
+{% block title %}Certificate of Participation{% endblock %}
+{% block body %}
+    {% load staticfiles %}
+    <div style="width:800px; height:600px; padding:20px; margin:auto;; border: 10px solid #787878">
+<div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
+       <span style="font-size:50px; font-weight:bold">CERTIFICATE OF COMPLETION</span>
+       <br><br>
+       <span style="font-size:25px;font-family:arial"><i>This is to certify that</i></span>
+       <br><br>
+       <span style="font-size:30px;font-family:arial;font-weight:bold"><b>User : <strong style="font-size:30pt;">{{ user.username }}</strong></b></span><br/><br/>
+       <span style="font-size:25px;font-family:arial;font-weight:bold"><i>Has succesfully completed </i></span> <br/><br/>
+       <span style="font-size:30px;font-family:arial;">The QUIZ </span> <br/><br/>
+       <h2 style="font-family:arial;"> With a score of : <br><h1 align="center"><strong style="font-size:30px;color:green;"> {{score}} Point(s)</strong></h1></h2>
+</div>
+</div>
+{% endblock %}

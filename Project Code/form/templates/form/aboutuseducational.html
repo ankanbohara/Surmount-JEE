@@ -1,0 +1,40 @@
+
+{% extends 'form/basemain.html' %}
+{% load staticfiles %}
+{% block title %}About Us{% endblock %}
+{% block body %}
+<style>
+
+h1{
+text-align : center;
+font-size : 40px;
+color : #ffffff;
+}
+p {
+text-align:center;
+font-size : 25px;
+color:darkgreen;
+    font-family: Serif;
+}
+body {
+    background-color:#00Bfff;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div style="width:80%;background-color:white;margin-left:150px;border:1px solid blue;">
+<h1 id="p2">Our goal : </h1>
+<p>The site is built with the objective of providing best study materials and challenging hard problems which made the students prepared for tough exams like Joint Entrance Exam.</p></br>
+<h1>About the owners : </h1>
+<p>The owner of this site are Mr.Ankan Bohara and Mr.Prashant Sharma and currently are students of B.Tech Computer Science and Engineering.Both of them cleared JEE ADVANCED-2016 exam.They and many others have undergone through these rigorous process and very well knows about the hardships one face as a student while preparing for entrance exams.</p>
+    <div class="container">
+    <img src="{% static 'form/images/ankanimage.jpg' %}" class="img-circle" alt="Ankan Bohara" width="304" height="236" align="left">
+    <img src="{% static 'form/images/prashantimage.jpg' %}"class="img-circle" alt="Prashant Sharma" width="304" height="236" align="right">
+    </div>
+<h1>Whom we want to serve : </h1>
+<p>This site is built for all.If you are a beginner then this is the best place to start with and if you think you are deligent one then problems would challenge you a lot.</p>
+</div>
+{% endblock %}

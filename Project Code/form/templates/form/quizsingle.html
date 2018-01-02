@@ -1,0 +1,62 @@
+{% extends 'form/basemain.html' %}
+{% block title %}Single Correct Type{% endblock %}
+{% block body %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'form/style.css' %}" />
+
+  <p style="font-size: 35px;margin-top:-55px;color:black;margin-left: 900px;">Time remaining:</p><span id="timer" style="float:right;font-size: 40px;margin-top:-50px;color:red"></span>
+{% if all_question %}
+	<form method="POST" action="{% url 'form:quizsingle'%}">
+
+        <script>
+document.getElementById('timer').innerHTML =
+  05 + ":" + 20;
+startTimer();
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  if(m<0)
+    document.getElementsByTagName('button')[0].click();
+
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
+
+
+        </script>
+    <script>var i=0;</script>
+    {% for quizes in all_question %}
+        <div style="padding:20px 20px;border:1px solid brown;">
+    <h1 style="font-size:30px;text-align: center"><span style="color: #0f0f0f"><script>document.write(++i)</script>.Question :</span><span style="color: purple"> {{quizes.question}} ?</span></h1><br>
+       <div style="font-size: 25px; color:black;">
+        <input type="radio" value="{{quizes.choice1}}" name="{{quizes.id}}" style="width:20px;height:30px"> {{quizes.choice1}} <br>
+        <input type="radio" value="{{quizes.choice2}}" name="{{quizes.id}}" style="width:20px;height:30px">{{quizes.choice2}} <br>
+        <input type="radio" value="{{quizes.choice3}}" name="{{quizes.id}}" style="width:20px;height:30px">{{quizes.choice3}} <br>
+        <input type="radio" value="{{quizes.choice4}}" name="{{quizes.id}}" style="width:20px;height:30px">{{quizes.choice4}} <br>
+       </div>
+        </div>
+           <hr>
+    {% endfor %}
+    <br>
+    <button id ="submit" style="height:50px;width:100px;color:white;background:green;margin-left: 700px;margin-bottom: 50px;">Submit</button>
+    <style>#submit:hover{
+        background-color:red;
+    }</style>
+    {% csrf_token %}
+</form>
+{% else %}
+	<h2> You do not have any questions</h2>
+{% endif %}
+{% endblock %}
+	

@@ -1,0 +1,23 @@
+{% extends 'form/basemain.html' %}
+{% load staticfiles %}
+{% block title %}Feedback Form{% endblock %}
+{% block body %}
+    <h1 style="margin-top:70px;text-align:center;">Your Suggestions</h1>
+    <div style="  border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;border:1px solid blue;" class="container">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" name="firstname" placeholder="enter your first name" style="margin-left:30px;width:80%;" required><br>
+     <label for="secondname">Second Name</label>
+     <input type="text" id="secondname" name="lastname" placeholder="enter your second name" style="margin-left:10px;width:80%;" required><br>
+        <label for="email">Email id</label>
+        <input type="email" id="email" name="email" placeholder="     enter your email id" style="width:80%;margin-left:49px;height:45px;" required><br>
+     <label>Your Feedback</label>
+     <input type="text" style="width:80%;height:200px;" name="suggestions" placeholder="write your feedback..." required>
+    <button type="submit" class="glyphicon glyphicon-save" style="color:black;width:30%;margin-left:450px;">Submit</button><br><br><br>
+    </form>
+
+    </div>
+ <br><br><br>
+{% endblock %}

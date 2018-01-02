@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<title> 
+		{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<h1>{% block head %}LOGIN{% endblock %}</h1>
+		{% block content %}{% endblock %}
+
+	</body>
+</html>

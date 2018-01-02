@@ -1,0 +1,12 @@
+{% extends 'form/basemain.html' %}
+{% block title %}Notifications{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    {% for a in all_notifications %}
+      <div style="width: 80%;background-color: white;margin: auto;border:1px solid blue;">
+        <h1 style="margin-left: 450px;">{{ a.category }}</h1>
+        <h6 style="margin: auto;float: right;color: green;">{{ a.pub }}</h6>
+        <hr>
+        <marquee direction="left" scrollamount="15"><h1 style="color:red;text-align: center;">{{ a.notify }}</h1></marquee></div>
+    {% endfor %}
+{%  endblock %}

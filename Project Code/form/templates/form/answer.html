@@ -1,0 +1,10 @@
+{% extends 'form/basemain.html' %}
+{% block title %}Correct Answer{% endblock %}
+{% load staticfiles %}
+{% block body %}
+    <h1 align="center" style="color:black;font-family:comic">Answers Page</h1><hr><hr>
+{% for quizes in quiz %}
+    Q{{ quizes.id }}-{{ quizes.question }} :<br>Right answer : {{quizes.answer}}<br><hr>
+{% endfor %}
+
+{% endblock %}
