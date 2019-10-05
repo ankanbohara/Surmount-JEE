@@ -13,30 +13,32 @@ from django.contrib.auth.models import User
         return self.user.username
         """
 class Singleoption(models.Model):
-    question = models.CharField(max_length=500)
+    #For single correct type of questions
+    question = models.CharField(max_length=1000)
     pub = models.DateTimeField('Date Published')
-    choice1 = models.CharField(max_length=500,blank="True")
-    choice2 = models.CharField(max_length=500, blank="True")
-    choice3 = models.CharField(max_length=500, blank="True")
-    choice4 = models.CharField(max_length=500, blank="True")
-    answer = models.CharField(max_length=500,blank="True")
+    choice1 = models.CharField(max_length=1000,blank="True")
+    choice2 = models.CharField(max_length=1000, blank="True")
+    choice3 = models.CharField(max_length=1000, blank="True")
+    choice4 = models.CharField(max_length=1000, blank="True")
+    answer = models.CharField(max_length=1000,blank="True")
     def __str__(self):
         return self.question
 
 class Morethanone(models.Model):
-    question = models.CharField(max_length=500)
+    #For more than one correct type of questions
+    question = models.CharField(max_length=1000)
     pub = models.DateTimeField('Date Published')
-    choice1 = models.CharField(max_length=500, blank="True")
-    choice2 = models.CharField(max_length=500, blank="True")
-    choice3 = models.CharField(max_length=500, blank="True")
-    choice4 = models.CharField(max_length=500, blank="True")
-    answer = models.CharField(max_length=500, blank="True")
+    choice1 = models.CharField(max_length=1000, blank="True")
+    choice2 = models.CharField(max_length=1000, blank="True")
+    choice3 = models.CharField(max_length=1000, blank="True")
+    choice4 = models.CharField(max_length=1000, blank="True")
+    answer = models.CharField(max_length=1000, blank="True")
 
     def __str__(self):
         return self.question
 
 class Feedback(models.Model):
-
+    #For feedbacks from users
     firstname = models.CharField(max_length=1000)
     lastname = models.CharField(max_length=1000)
     email = models.EmailField(max_length=1000)
@@ -44,11 +46,13 @@ class Feedback(models.Model):
     def __str__(self):
         return self.firstname
 class Login(models.Model):
+    #For login
     username = models.CharField(max_length=1000)
     password = models.CharField(max_length=1000)
     def __str__(self):
         return self.username
 class Contact(models.Model):
+    #For contact
     firstname = models.CharField(max_length=1000)
     lastname = models.CharField(max_length=1000)
     state = models.CharField(max_length=2000)
@@ -63,14 +67,14 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 class Notification(models.Model):
-    category = models.CharField(max_length=100)
-    notify = models.CharField(max_length=100)
+    category = models.CharField(max_length=1000)
+    notify = models.CharField(max_length=1000)
     pub = models.DateTimeField('Date of notification', blank=True, null=True)
     def __str__(self):
         return self.category
 class Performance(models.Model):
-    user = models.CharField(max_length=100)
-    datetime = models.CharField(max_length=60)
+    user = models.CharField(max_length=1000)
+    datetime = models.CharField(max_length=600)
     score = models.IntegerField()
     def __str__(self):
         return self.user+' '+self.datetime
